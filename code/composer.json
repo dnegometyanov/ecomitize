@@ -1,7 +1,19 @@
 {
+  "name": "dnegometyanov/ecomitize",
+  "description": "Composer project for ecomitize test task",
+  "authors": [
+    {
+      "name": "Denis Negometyanov",
+      "email": "denis.negometyanov@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.1"
+  },
   "autoload": {
     "psr-0": {
-      "Vehicle": ""
+        "Vehicle": "src/"
     }
   }
 }

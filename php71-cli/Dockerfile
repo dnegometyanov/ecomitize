@@ -3,7 +3,7 @@ FROM php:7.1-cli
 MAINTAINER Denis Negometyanov <denis.negometyanov@gmail.com>
 
 RUN apt-get update && apt-get install -y curl \
-    libfreetype6-dev libmcrypt-dev \
+    libfreetype6-dev libmcrypt-dev git \
     && docker-php-ext-install iconv mcrypt \
     && docker-php-ext-install zip \
     && docker-php-ext-install opcache
