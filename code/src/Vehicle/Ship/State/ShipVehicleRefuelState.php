@@ -2,20 +2,17 @@
 
 namespace Vehicle\Ship\State;
 
-class ShipVehicleStoppedState extends AbstractShipVehicleState
+use Vehicle\Base\Water\State\AbstractWaterVehicleState;
+
+class ShipVehicleRefuelState extends AbstractWaterVehicleState
 {
     public function swim()
     {
         return new ShipVehicleSwimmingState();
     }
 
-    public function refuel()
-    {
-        return new ShipVehicleRefuelState();
-    }
-
     public function __toString(): string
     {
-        return 'stopped';
+        return 'refuel';
     }
 }

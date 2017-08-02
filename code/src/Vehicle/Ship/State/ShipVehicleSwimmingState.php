@@ -1,8 +1,8 @@
 <?php
 
-namespace Vehicle\Base\Water\State;
+namespace Vehicle\Ship\State;
 
-class ShipVehicleSwimmingState extends AbstractWaterVehicleState
+class ShipVehicleSwimmingState extends AbstractShipVehicleState
 {
     public function stop()
     {

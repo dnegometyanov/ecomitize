@@ -1,6 +1,6 @@
 <?php
 
-namespace Vehicle\Cargo\State;
+namespace Vehicle\Ship\State;
 
 use Vehicle\Base\Water\State\WaterVehicleStateInterface;
 

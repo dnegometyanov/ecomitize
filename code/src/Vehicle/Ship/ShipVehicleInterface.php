@@ -1,6 +1,6 @@
 <?php
 
-namespace Vehicle\Cargo;
+namespace Vehicle\Ship;
 
 use Vehicle\Base\Water\WaterVehicleInterface;
 
