@@ -3,18 +3,19 @@
 namespace Vehicle\Base\Flying;
 
 use Vehicle\Base\AbstractVehicle;
-use Vehicle\Base\Flying\State\FlyingVehicleLandedState;
+use Vehicle\Base\Flying\State\FlyingVehicleStateInterface;
+use Vehicle\Base\VehicleStateInterface;
 
 /**
  * @property FlyingVehicleStateInterface $state
  */
 abstract class AbstractFlyingVehicle extends AbstractVehicle implements FlyingVehicleInterface
 {
-    public function __construct(string $name)
+    public function __construct(string $name, VehicleStateInterface $state)
     {
         parent::__construct($name);
 
-        $this->setState(new FlyingVehicleLandedState());
+        $this->setState($state);
     }
 
     public function takeOff()
@@ -29,6 +30,6 @@ abstract class AbstractFlyingVehicle extends AbstractVehicle implements FlyingVe
 
     public function landing()
     {
-        $this->setState($this->state->land());
+        $this->setState($this->state->landing());
     }
 }

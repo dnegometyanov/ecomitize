@@ -3,12 +3,13 @@
 namespace Vehicle\Base\Land;
 
 use Vehicle\Base\AbstractVehicle;
+use Vehicle\Base\Land\State\LandVehicleStateInterface;
 use Vehicle\Base\VehicleStateInterface;
 
 /**
- * @property LandVehicleInterface $state
+ * @property LandVehicleStateInterface $state
  */
-abstract class AbstractLandVehicle extends AbstractVehicle
+abstract class AbstractLandVehicle extends AbstractVehicle implements LandVehicleInterface
 {
     public function __construct(string $name, VehicleStateInterface $state)
     {

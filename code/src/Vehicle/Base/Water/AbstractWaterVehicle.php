@@ -4,9 +4,10 @@ namespace Vehicle\Base\Water;
 
 use Vehicle\Base\AbstractVehicle;
 use Vehicle\Base\VehicleStateInterface;
+use Vehicle\Base\Water\State\WaterVehicleStateInterface;
 
 /**
- * @property WaterVehicleInterface $state
+ * @property WaterVehicleStateInterface $state
  */
 abstract class AbstractWaterVehicle extends AbstractVehicle implements WaterVehicleInterface
 {
