@@ -2,7 +2,7 @@
 
 namespace Vehicle\Base;
 
-use Vehicle\Gas\VehicleGasInterface;
+use VehicleGas\VehicleGasInterface;
 
 abstract class AbstractVehicle implements VehicleInterface
 {

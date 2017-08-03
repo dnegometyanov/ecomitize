@@ -1,6 +1,6 @@
 <?php
 
-namespace Vehicle\Gas;
+namespace VehicleGas;
 
 class VehicleGas implements VehicleGasInterface
 {

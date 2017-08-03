@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 use Vehicle\Ship\ShipVehicleInterface;
 use Vehicle\Ship\ShipVehicle;
 use Vehicle\Ship\State;
-use Vehicle\Gas\VehicleGas;
+use VehicleGas\VehicleGas;
 
 /**
  * @covers ShipVehicle

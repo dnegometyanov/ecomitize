@@ -9,7 +9,7 @@ use Vehicle\Passenger\State\PassengerVehicleStoppedState;
 use Vehicle\Helicopter\State\HelicopterVehicleLandingState;
 use Vehicle\Ship\State\ShipVehicleStoppedState;
 use VehicleCommand\VehicleDriveCommandFactory;
-use Vehicle\Garage\VehicleGarage;
+use VehicleGarage\VehicleGarage;
 
 require ('./vendor/autoload.php');
 

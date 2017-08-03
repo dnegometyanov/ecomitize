@@ -3,7 +3,7 @@
 namespace VehicleCommand\Drive;
 
 use Vehicle\Cargo\CargoVehicleInterface;
-use Vehicle\Gas\VehicleGas;
+use VehicleGas\VehicleGas;
 
 /**
  * @property CargoVehicleInterface $vehicle

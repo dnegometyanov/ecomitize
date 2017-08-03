@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 use Vehicle\Passenger\PassengerVehicleInterface;
 use Vehicle\Passenger\PassengerVehicle;
 use Vehicle\Passenger\State;
-use Vehicle\Gas\VehicleGas;
+use VehicleGas\VehicleGas;
 
 /**
  * @covers PassengerVehicle

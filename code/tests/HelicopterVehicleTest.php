@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 use Vehicle\Helicopter\HelicopterVehicleInterface;
 use Vehicle\Helicopter\HelicopterVehicle;
 use Vehicle\Helicopter\State;
-use Vehicle\Gas\VehicleGas;
+use VehicleGas\VehicleGas;
 
 /**
  * @covers HelicopterVehicle

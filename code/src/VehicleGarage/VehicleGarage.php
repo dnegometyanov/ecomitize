@@ -1,6 +1,6 @@
 <?php
 
-namespace Vehicle\Garage;
+namespace VehicleGarage;
 
 use Vehicle\Base\VehicleInterface;
 
