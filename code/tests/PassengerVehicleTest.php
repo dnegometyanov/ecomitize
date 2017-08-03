@@ -4,7 +4,8 @@ declare(strict_types = 1);
 use PHPUnit\Framework\TestCase;
 use Vehicle\Passenger\PassengerVehicleInterface;
 use Vehicle\Passenger\PassengerVehicle;
-use \Vehicle\Passenger\State;
+use Vehicle\Passenger\State;
+use Vehicle\Gas\VehicleGas;
 
 /**
  * @covers PassengerVehicle
@@ -29,6 +30,7 @@ final class PassengerVehicleTest extends TestCase
     public function testDriveVehicleSuccess(): void
     {
         $passengerVehicleBMW = new PassengerVehicle('BMW', new State\PassengerVehicleStoppedState());
+        $gasolineGas = new VehicleGas('Gasoline A-98');
 
         $passengerVehicleBMW->move();
 
@@ -51,7 +53,7 @@ final class PassengerVehicleTest extends TestCase
             $passengerVehicleBMW->getState()
         );
 
-        $passengerVehicleBMW->refuel();
+        $passengerVehicleBMW->refuel($gasolineGas);
 
         $this->assertInstanceof(
             State\PassengerVehicleRefuelState::class,
@@ -100,10 +102,11 @@ final class PassengerVehicleTest extends TestCase
         $this->expectException(\Vehicle\Exception\VehicleIllegalStateTransitionException::class);
 
         $passengerVehicleBMW = new PassengerVehicle('BMW', new State\PassengerVehicleStoppedState());
+        $gasolineGas = new VehicleGas('Gasoline A-98');
 
         $passengerVehicleBMW->move();
 
-        $passengerVehicleBMW->refuel();
+        $passengerVehicleBMW->refuel($gasolineGas);
     }
 
     public function testRefuelOnRefuelVehicleFail(): void
@@ -111,10 +114,11 @@ final class PassengerVehicleTest extends TestCase
         $this->expectException(\Vehicle\Exception\VehicleIllegalStateTransitionException::class);
 
         $passengerVehicleBMW = new PassengerVehicle('BMW', new State\PassengerVehicleStoppedState());
+        $gasolineGas = new VehicleGas('Gasoline A-98');
 
-        $passengerVehicleBMW->refuel();
+        $passengerVehicleBMW->refuel($gasolineGas);
 
-        $passengerVehicleBMW->refuel();
+        $passengerVehicleBMW->refuel($gasolineGas);
     }
 
     public function testStopOnRefuelVehicleFail(): void
@@ -122,8 +126,9 @@ final class PassengerVehicleTest extends TestCase
         $this->expectException(\Vehicle\Exception\VehicleIllegalStateTransitionException::class);
 
         $passengerVehicleBMW = new PassengerVehicle('BMW', new State\PassengerVehicleStoppedState());
+        $gasolineGas = new VehicleGas('Gasoline A-98');
 
-        $passengerVehicleBMW->refuel();
+        $passengerVehicleBMW->refuel($gasolineGas);
 
         $passengerVehicleBMW->stop();
     }
@@ -133,8 +138,9 @@ final class PassengerVehicleTest extends TestCase
         $this->expectException(\Vehicle\Exception\VehicleIllegalStateTransitionException::class);
 
         $passengerVehicleBMW = new PassengerVehicle('BMW', new State\PassengerVehicleStoppedState());
+        $gasolineGas = new VehicleGas('Gasoline A-98');
 
-        $passengerVehicleBMW->refuel();
+        $passengerVehicleBMW->refuel($gasolineGas);
 
         $passengerVehicleBMW->musicOn();
     }

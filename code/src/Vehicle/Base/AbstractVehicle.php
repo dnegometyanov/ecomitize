@@ -2,6 +2,8 @@
 
 namespace Vehicle\Base;
 
+use Vehicle\Gas\VehicleGasInterface;
+
 abstract class AbstractVehicle implements VehicleInterface
 {
     /**
@@ -34,7 +36,7 @@ abstract class AbstractVehicle implements VehicleInterface
         return $this->state;
     }
 
-    public function refuel()
+    public function refuel(VehicleGasInterface $gas)
     {
         $this->setState($this->state->refuel());
     }

@@ -4,7 +4,8 @@ declare(strict_types = 1);
 use PHPUnit\Framework\TestCase;
 use Vehicle\Cargo\CargoVehicleInterface;
 use Vehicle\Cargo\CargoVehicle;
-use \Vehicle\Cargo\State;
+use Vehicle\Cargo\State;
+use Vehicle\Gas\VehicleGas;
 
 /**
  * @covers CargoVehicle
@@ -14,6 +15,7 @@ final class CargoVehicleTest extends TestCase
     public function testCreateCargoVehicle(): void
     {
         $cargoVehicleKamaz = new CargoVehicle('Kamaz', new State\CargoVehicleStoppedState());
+        $dieselGas = new VehicleGas('Diesel');
 
         $this->assertInstanceOf(
             CargoVehicleInterface::class,
@@ -29,6 +31,7 @@ final class CargoVehicleTest extends TestCase
     public function testDriveVehicleSuccess(): void
     {
         $cargoVehicleKamaz = new CargoVehicle('Kamaz', new State\CargoVehicleStoppedState());
+        $dieselGas = new VehicleGas('Diesel');
 
         $cargoVehicleKamaz->move();
 
@@ -51,7 +54,7 @@ final class CargoVehicleTest extends TestCase
             $cargoVehicleKamaz->getState()
         );
 
-        $cargoVehicleKamaz->refuel();
+        $cargoVehicleKamaz->refuel($dieselGas);
 
         $this->assertInstanceof(
             State\CargoVehicleRefuelState::class,
@@ -69,8 +72,9 @@ final class CargoVehicleTest extends TestCase
     public function tesEmptyLoadsOnRefuelVehicleSuccess(): void
     {
         $cargoVehicleKamaz = new CargoVehicle('Kamaz', new State\CargoVehicleStoppedState());
+        $dieselGas = new VehicleGas('Diesel');
 
-        $cargoVehicleKamaz->refuel();
+        $cargoVehicleKamaz->refuel($dieselGas);
 
         $cargoVehicleKamaz->emptyLoads();
 
@@ -116,10 +120,11 @@ final class CargoVehicleTest extends TestCase
         $this->expectException(\Vehicle\Exception\VehicleIllegalStateTransitionException::class);
 
         $cargoVehicleKamaz = new CargoVehicle('Kamaz', new State\CargoVehicleStoppedState());
+        $dieselGas = new VehicleGas('Diesel');
 
         $cargoVehicleKamaz->move();
 
-        $cargoVehicleKamaz->refuel();
+        $cargoVehicleKamaz->refuel($dieselGas);
     }
 
     public function testRefuelOnRefuelVehicleFail(): void
@@ -127,10 +132,11 @@ final class CargoVehicleTest extends TestCase
         $this->expectException(\Vehicle\Exception\VehicleIllegalStateTransitionException::class);
 
         $cargoVehicleKamaz = new CargoVehicle('Kamaz', new State\CargoVehicleStoppedState());
+        $dieselGas = new VehicleGas('Diesel');
 
-        $cargoVehicleKamaz->refuel();
+        $cargoVehicleKamaz->refuel($dieselGas);
 
-        $cargoVehicleKamaz->refuel();
+        $cargoVehicleKamaz->refuel($dieselGas);
     }
 
     public function testStopOnRefuelVehicleFail(): void
@@ -138,8 +144,9 @@ final class CargoVehicleTest extends TestCase
         $this->expectException(\Vehicle\Exception\VehicleIllegalStateTransitionException::class);
 
         $cargoVehicleKamaz = new CargoVehicle('Kamaz', new State\CargoVehicleStoppedState());
+        $dieselGas = new VehicleGas('Diesel');
 
-        $cargoVehicleKamaz->refuel();
+        $cargoVehicleKamaz->refuel($dieselGas);
 
         $cargoVehicleKamaz->stop();
     }

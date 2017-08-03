@@ -4,7 +4,8 @@ declare(strict_types = 1);
 use PHPUnit\Framework\TestCase;
 use Vehicle\Ship\ShipVehicleInterface;
 use Vehicle\Ship\ShipVehicle;
-use \Vehicle\Ship\State;
+use Vehicle\Ship\State;
+use Vehicle\Gas\VehicleGas;
 
 /**
  * @covers ShipVehicle
@@ -29,6 +30,7 @@ final class ShipVehicleTest extends TestCase
     public function testDriveVehicleSuccess(): void
     {
         $passengerVehicleBoat = new ShipVehicle('Boat', new State\ShipVehicleStoppedState());
+        $gasolineGas = new VehicleGas('Gasoline A-92');
 
         $passengerVehicleBoat->swim();
 
@@ -44,7 +46,7 @@ final class ShipVehicleTest extends TestCase
             $passengerVehicleBoat->getState()
         );
 
-        $passengerVehicleBoat->refuel();
+        $passengerVehicleBoat->refuel($gasolineGas);
 
         $this->assertInstanceof(
             State\ShipVehicleRefuelState::class,
@@ -84,10 +86,11 @@ final class ShipVehicleTest extends TestCase
         $this->expectException(\Vehicle\Exception\VehicleIllegalStateTransitionException::class);
 
         $passengerVehicleBoat = new ShipVehicle('Boat', new State\ShipVehicleStoppedState());
+        $gasolineGas = new VehicleGas('Gasoline A-92');
 
         $passengerVehicleBoat->swim();
 
-        $passengerVehicleBoat->refuel();
+        $passengerVehicleBoat->refuel($gasolineGas);
     }
 
     public function testRefuelOnRefuelVehicleFail(): void
@@ -95,10 +98,11 @@ final class ShipVehicleTest extends TestCase
         $this->expectException(\Vehicle\Exception\VehicleIllegalStateTransitionException::class);
 
         $passengerVehicleBoat = new ShipVehicle('Boat', new State\ShipVehicleStoppedState());
+        $gasolineGas = new VehicleGas('Gasoline A-92');
 
-        $passengerVehicleBoat->refuel();
+        $passengerVehicleBoat->refuel($gasolineGas);
 
-        $passengerVehicleBoat->refuel();
+        $passengerVehicleBoat->refuel($gasolineGas);
     }
 
     public function testStopOnRefuelVehicleFail(): void
@@ -106,8 +110,9 @@ final class ShipVehicleTest extends TestCase
         $this->expectException(\Vehicle\Exception\VehicleIllegalStateTransitionException::class);
 
         $passengerVehicleBoat = new ShipVehicle('Boat', new State\ShipVehicleStoppedState());
+        $gasolineGas = new VehicleGas('Gasoline A-92');
 
-        $passengerVehicleBoat->refuel();
+        $passengerVehicleBoat->refuel($gasolineGas);
 
         $passengerVehicleBoat->stop();
     }

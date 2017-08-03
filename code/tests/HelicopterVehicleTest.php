@@ -4,7 +4,8 @@ declare(strict_types = 1);
 use PHPUnit\Framework\TestCase;
 use Vehicle\Helicopter\HelicopterVehicleInterface;
 use Vehicle\Helicopter\HelicopterVehicle;
-use \Vehicle\Helicopter\State;
+use Vehicle\Helicopter\State;
+use Vehicle\Gas\VehicleGas;
 
 /**
  * @covers HelicopterVehicle
@@ -29,6 +30,7 @@ final class HelicopterVehicleTest extends TestCase
     public function testDriveVehicleSuccess(): void
     {
         $helicopterVehicleBoeing = new HelicopterVehicle('Boeing CH-47 Chinook', new State\HelicopterVehicleLandingState());
+        $kereseneGas = new VehicleGas('Kerosene');
 
         $helicopterVehicleBoeing->takeOff();
 
@@ -51,7 +53,7 @@ final class HelicopterVehicleTest extends TestCase
             $helicopterVehicleBoeing->getState()
         );
 
-        $helicopterVehicleBoeing->refuel();
+        $helicopterVehicleBoeing->refuel($kereseneGas);
 
         $this->assertInstanceof(
             State\HelicopterVehicleRefuelState::class,
@@ -104,10 +106,11 @@ final class HelicopterVehicleTest extends TestCase
         $this->expectException(\Vehicle\Exception\VehicleIllegalStateTransitionException::class);
 
         $helicopterVehicleBoeing = new HelicopterVehicle('Boeing CH-47 Chinook', new State\HelicopterVehicleLandingState());
+        $kereseneGas = new VehicleGas('Kerosene');
 
         $helicopterVehicleBoeing->takeOff();
 
-        $helicopterVehicleBoeing->refuel();
+        $helicopterVehicleBoeing->refuel($kereseneGas);
     }
 
     public function testRefuelOnFlyVehicleFail(): void
@@ -115,12 +118,13 @@ final class HelicopterVehicleTest extends TestCase
         $this->expectException(\Vehicle\Exception\VehicleIllegalStateTransitionException::class);
 
         $helicopterVehicleBoeing = new HelicopterVehicle('Boeing CH-47 Chinook', new State\HelicopterVehicleLandingState());
+        $kereseneGas = new VehicleGas('Kerosene');
 
         $helicopterVehicleBoeing->takeOff();
 
         $helicopterVehicleBoeing->fly();
 
-        $helicopterVehicleBoeing->refuel();
+        $helicopterVehicleBoeing->refuel($kereseneGas);
     }
 
     public function testRefuelOnRefuelVehicleFail(): void
@@ -128,14 +132,15 @@ final class HelicopterVehicleTest extends TestCase
         $this->expectException(\Vehicle\Exception\VehicleIllegalStateTransitionException::class);
 
         $helicopterVehicleBoeing = new HelicopterVehicle('Boeing CH-47 Chinook', new State\HelicopterVehicleLandingState());
+        $kereseneGas = new VehicleGas('Kerosene');
 
         $helicopterVehicleBoeing->takeOff();
 
         $helicopterVehicleBoeing->fly();
 
-        $helicopterVehicleBoeing->refuel();
+        $helicopterVehicleBoeing->refuel($kereseneGas);
 
-        $helicopterVehicleBoeing->refuel();
+        $helicopterVehicleBoeing->refuel($kereseneGas);
     }
 
     public function testTakeOffOnFlyVehicleFail(): void
@@ -156,8 +161,9 @@ final class HelicopterVehicleTest extends TestCase
         $this->expectException(\Vehicle\Exception\VehicleIllegalStateTransitionException::class);
 
         $helicopterVehicleBoeing = new HelicopterVehicle('Boeing CH-47 Chinook', new State\HelicopterVehicleLandingState());
+        $kereseneGas = new VehicleGas('Kerosene');
 
-        $helicopterVehicleBoeing->refuel();
+        $helicopterVehicleBoeing->refuel($kereseneGas);
 
         $helicopterVehicleBoeing->landing();
     }
