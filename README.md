@@ -1,6 +1,6 @@
 ## Ecomitize: vehicles task
 
-#####Overview
+##### Overview
 
 This task is like a game and I hope it would be interesting.
 In any case, imagine a big garage. It contains vehicles.
@@ -10,7 +10,7 @@ car can switch music on.
 Every vehicle has to refuel, that's why every vehicle has such ability.
 There are several issues and we hope you'd solve them for us.
 
-#####Instructions
+##### Instructions
 
 Create a repository in your github account
 Look at our code in kindaShittyExample.php, believe me, it's kinda shitty
