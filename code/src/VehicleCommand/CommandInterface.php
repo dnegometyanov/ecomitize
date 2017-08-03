@@ -4,5 +4,5 @@ namespace VehicleCommand;
 
 interface CommandInterface
 {
-     public function execute();
+    public function execute();
 }

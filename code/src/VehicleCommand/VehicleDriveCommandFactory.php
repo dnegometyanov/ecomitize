@@ -10,14 +10,16 @@ use VehicleCommand\Drive\ShipVehicleDriveCommand;
 use VehicleCommand\Drive\VehicleDriveCommandInterface;
 use VehicleCommand\Exception\VehicleCommandNotFoundException;
 
-class VehicleDriveCommandFactory implements VehicleDriveCommandFactoryInterface {
+class VehicleDriveCommandFactory implements VehicleDriveCommandFactoryInterface
+{
 
     const CARGO_VEHICLE_CLASS = 'Vehicle\Cargo\CargoVehicle';
     const PASSENGER_VEHICLE_CLASS = 'Vehicle\Passenger\PassengerVehicle';
     const SHIP_VEHICLE_CLASS = 'Vehicle\Ship\ShipVehicle';
     const HELICOPTER_VEHICLE_CLASS = 'Vehicle\Helicopter\HelicopterVehicle';
 
-    public function createDriveCommand(VehicleInterface $vehicle): VehicleDriveCommandInterface {
+    public function createDriveCommand(VehicleInterface $vehicle): VehicleDriveCommandInterface
+    {
 
         $vehicleClass = get_class($vehicle);
 

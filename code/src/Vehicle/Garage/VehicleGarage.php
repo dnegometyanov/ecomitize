@@ -1,6 +1,7 @@
 <?php
 
 namespace Vehicle\Garage;
+
 use Vehicle\Base\VehicleInterface;
 
 class VehicleGarage
@@ -8,16 +9,21 @@ class VehicleGarage
     /**
      * @var array
      */
-    protected $vehicles = [];
+    protected $vehicles;
 
-    function addVehicle(VehicleInterface $vehicle)
+    public function __construct()
+    {
+        $this->vehicles = [];
+    }
+
+    public function addVehicle(VehicleInterface $vehicle)
     {
         $this->vehicles[] = $vehicle;
 
         return $this;
     }
 
-    function getVehicles()
+    public function getVehicles()
     {
         foreach ($this->vehicles as $vehicle) {
             yield $vehicle;

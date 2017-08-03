@@ -17,8 +17,9 @@ class HelicopterVehicleDriveCommand extends AbstractVehicleDriveCommand
 
     public function execute()
     {
-        $this->vehicle->swim();
-        $this->vehicle->stop();
+        $this->vehicle->takeOff();
+        $this->vehicle->fly();
+        $this->vehicle->landing();
         $this->vehicle->refuel(new VehicleGas('Keresene'));
     }
 }

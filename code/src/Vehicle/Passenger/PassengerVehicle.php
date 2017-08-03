@@ -13,4 +13,9 @@ class PassengerVehicle extends AbstractLandVehicle implements PassengerVehicleIn
     {
         $this->setState($this->state->musicOn());
     }
+
+    protected function isRefuelState()
+    {
+        return get_class($this->state) == 'Vehicle\Passenger\State\PassengerVehicleRefuelState';
+    }
 }

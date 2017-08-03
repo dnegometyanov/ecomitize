@@ -16,4 +16,9 @@ class CargoVehicle extends AbstractLandVehicle implements CargoVehicleInterface
     {
         $this->setState($this->state->emptyLoads());
     }
+
+    protected function isRefuelState()
+    {
+        return get_class($this->state) == 'Vehicle\Cargo\State\CargoVehicleRefuelState';
+    }
 }
