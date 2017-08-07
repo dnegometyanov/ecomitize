@@ -9,20 +9,15 @@ use VehicleCommand\Exception\VehicleCommandNotFoundException;
 
 class VehicleDriveCommandFactory implements VehicleDriveCommandFactoryInterface
 {
-
-    const CARGO_VEHICLE_CLASS = 'Vehicle\CargoVehicle';
-
     public function createDriveCommand(VehicleInterface $vehicle): VehicleDriveCommandInterface
     {
-        $vehicleClass = get_class($vehicle);
+        $vehicleCommandClass = sprintf('VehicleCommand\Drive\%sVehicleDriveCommand', ucfirst($vehicle->getType()));
 
-        switch ($vehicleClass) {
-            case self::CARGO_VEHICLE_CLASS:
-                $driveCommand = new CargoVehicleDriveCommand($vehicle);
-                break;
-            default:
-                throw new VehicleCommandNotFoundException(sprintf('No drive command for vehicle of class %s.', $vehicleClass));
+        if (!class_exists($vehicleCommandClass)) {
+            throw new VehicleCommandNotFoundException(sprintf('No drive command for vehicle of class %s.', $vehicleCommandClass));
         }
+
+        $driveCommand = new $vehicleCommandClass($vehicle);
 
         return $driveCommand;
     }

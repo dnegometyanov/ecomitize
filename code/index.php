@@ -11,6 +11,7 @@ $vehicleFactory = new VehicleFactory();
 $vehicleGarage = new VehicleGarage();
 $vehicleGarage
     ->addVehicle($vehicleFactory->createVehicle('cargo', 'Kamaz'))
+    ->addVehicle($vehicleFactory->createVehicle('passenger', 'BMW'))
 ;
 
 $vehicleDriveCommandFactory = new VehicleDriveCommandFactory();
