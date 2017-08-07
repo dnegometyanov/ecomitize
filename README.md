@@ -1,5 +1,9 @@
 ## Ecomitize: vehicles task
 
+##### Example of adding a new vehicle
+
+https://github.com/dnegometyanov/ecomitize/commit/43dc2b5e3d0fd8764a8e06486532fa94a4156c03
+
 ##### Overview
 
 This task is like a game and I hope it would be interesting.
