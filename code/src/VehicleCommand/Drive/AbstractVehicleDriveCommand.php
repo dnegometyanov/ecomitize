@@ -2,8 +2,8 @@
 
 namespace VehicleCommand\Drive;
 
-use Vehicle\Base\VehicleInterface;
-use Vehicle\Observer\VehicleStateObserver;
+use Vehicle\VehicleInterface;
+use VehicleObserver\VehicleStateObserver;
 
 abstract class AbstractVehicleDriveCommand implements VehicleDriveCommandInterface
 {

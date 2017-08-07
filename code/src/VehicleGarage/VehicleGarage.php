@@ -2,7 +2,7 @@
 
 namespace VehicleGarage;
 
-use Vehicle\Base\VehicleInterface;
+use Vehicle\VehicleInterface;
 
 class VehicleGarage
 {
@@ -25,8 +25,6 @@ class VehicleGarage
 
     public function getVehicles()
     {
-        foreach ($this->vehicles as $vehicle) {
-            yield $vehicle;
-        }
+        return $this->vehicles;
     }
 }
