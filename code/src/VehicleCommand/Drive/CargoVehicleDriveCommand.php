@@ -2,7 +2,7 @@
 
 namespace VehicleCommand\Drive;
 
-use Vehicle\Cargo\CargoVehicleInterface;
+use Vehicle\CargoVehicleInterface;
 use VehicleGas\VehicleGas;
 
 /**
