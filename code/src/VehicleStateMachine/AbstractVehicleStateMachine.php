@@ -3,6 +3,7 @@
 namespace VehicleStateMachine;
 
 use Vehicle\VehicleInterface;
+use VehicleStateMachine\Exception\InvalidVehicleStateMachineTransitionException;
 
 abstract class AbstractVehicleStateMachine implements VehicleStateMachineInterface
 {
@@ -48,7 +49,12 @@ abstract class AbstractVehicleStateMachine implements VehicleStateMachineInterfa
     public function applyTransition(string $transitionName): void
     {
         if (!$this->can($transitionName)) {
-            throw new \Exception('Cannot apply transition');
+            throw new InvalidVehicleStateMachineTransitionException(sprintf(
+                'Cannot apply transition %s from state %s for %s',
+                $transitionName,
+                $this->vehicle->getState(),
+                get_class($this->vehicle)
+            ));
         }
 
         /** @var $transitionCondition TransitionCondition */
@@ -61,11 +67,14 @@ abstract class AbstractVehicleStateMachine implements VehicleStateMachineInterfa
         return (bool)$this->getTransitionCondition($transitionName);
     }
 
-    protected function getTransitionCondition(string $transitionName): TransitionCondition
+    public function hasTransition(string $transitionName): bool
+    {
+        return (bool)in_array($transitionName, array_keys($this->getTransitions()));
+    }
+
+    protected function getTransitionCondition(string $transitionName): ?TransitionCondition
     {
         $transitionConditions = $this->getTransitionConditions($transitionName);
-
-        $transitionCondition = null;
 
         foreach ($transitionConditions as $transitionCondition) {
             /** @var $transitionCondition TransitionCondition */
@@ -74,7 +83,7 @@ abstract class AbstractVehicleStateMachine implements VehicleStateMachineInterfa
             }
         }
 
-        return $transitionCondition;
+        return null;
     }
 
     protected function getTransitionConditions(string $transitionName)

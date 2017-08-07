@@ -9,7 +9,7 @@ class CargoVehicleStateMachine extends AbstractVehicleStateMachine
         return [
             'stopped',
             'moving',
-            'empty',
+            'emptyLoads',
             'refueled'
         ];
     }
@@ -24,18 +24,19 @@ class CargoVehicleStateMachine extends AbstractVehicleStateMachine
         return [
             'move' => [
                 new TransitionCondition('stopped', 'moving'),
-                new TransitionCondition('empty', 'moving'),
+                new TransitionCondition('emptyLoads', 'moving'),
                 new TransitionCondition('refueled', 'moving'),
             ],
             'stop' => [
                 new TransitionCondition('moving', 'stopped'),
             ],
             'emptyLoads' => [
-                new TransitionCondition('stopped', 'empty'),
+                new TransitionCondition('stopped', 'emptyLoads'),
+                new TransitionCondition('refueled', 'emptyLoads'),
             ],
             'refuel' => [
                 new TransitionCondition('stopped', 'refueled'),
-                new TransitionCondition('empty', 'refueled'),
+                new TransitionCondition('emptyLoads', 'refueled'),
             ],
 
         ];

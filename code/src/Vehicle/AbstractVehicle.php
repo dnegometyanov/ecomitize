@@ -105,7 +105,7 @@ abstract class AbstractVehicle implements VehicleInterface
             throw new \Exception(('No state machine founded'));
         }
 
-        if ($this->getStateMachine()->can($transitionName)) {
+        if ($this->getStateMachine()->hasTransition($transitionName)) {
             $this->getStateMachine()->applyTransition($transitionName);
         }
     }
