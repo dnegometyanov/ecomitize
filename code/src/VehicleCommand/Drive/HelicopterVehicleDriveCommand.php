@@ -2,8 +2,8 @@
 
 namespace VehicleCommand\Drive;
 
+use Vehicle\HelicopterVehicleInterface;
 use VehicleGas\VehicleGas;
-use Vehicle\Helicopter\HelicopterVehicleInterface;
 
 /**
  * @property HelicopterVehicleInterface $vehicle
