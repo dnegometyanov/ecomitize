@@ -95,5 +95,4 @@ abstract class AbstractVehicleStateMachine implements VehicleStateMachineInterfa
 
         return $transitions[$transitionName];
     }
-
 }
