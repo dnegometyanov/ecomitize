@@ -13,6 +13,7 @@ $vehicleGarage
     ->addVehicle($vehicleFactory->createVehicle('cargo', 'Kamaz'))
     ->addVehicle($vehicleFactory->createVehicle('passenger', 'BMW'))
     ->addVehicle($vehicleFactory->createVehicle('helicopter', 'Boeing CH-47 Chinook'))
+    ->addVehicle($vehicleFactory->createVehicle('ship', 'Boat'))
 ;
 
 $vehicleDriveCommandFactory = new VehicleDriveCommandFactory();

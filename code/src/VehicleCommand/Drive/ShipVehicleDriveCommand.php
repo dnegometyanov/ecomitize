@@ -3,7 +3,7 @@
 namespace VehicleCommand\Drive;
 
 use VehicleGas\VehicleGas;
-use Vehicle\Ship\ShipVehicleInterface;
+use Vehicle\ShipVehicleInterface;
 
 /**
  * @property ShipVehicleInterface $vehicle
@@ -17,6 +17,7 @@ class ShipVehicleDriveCommand extends AbstractVehicleDriveCommand
 
     public function execute()
     {
+        $this->vehicle->move();
         $this->vehicle->swim();
         $this->vehicle->stop();
         $this->vehicle->refuel(new VehicleGas('Gasoline A-92'));
