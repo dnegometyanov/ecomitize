@@ -2,6 +2,6 @@ version: '2'
 
 services:
     php:
-        build: php71-cli
+        build: php72-cli
         volumes:
             - ./code:/code
