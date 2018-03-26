@@ -1,9 +1,5 @@
 ## Ecomitize: vehicles task
 
-##### Example of adding a new vehicle
-
-https://github.com/dnegometyanov/ecomitize/commit/43dc2b5e3d0fd8764a8e06486532fa94a4156c03
-
 ##### Overview
 
 This task is like a game and I hope it would be interesting.
@@ -49,21 +45,25 @@ so `ecomitize_php_1` is the container name in this case
 it should process output like this:
 
 ```
-BMW moving
-BMW moving and music switched on
-BMW stopped
-BMW refuel Gasoline A-98
-Kamaz moving
-Kamaz stopped
-Kamaz empty loads
-Kamaz refuel Diesel
-Boeing CH-47 Chinook took off
-Boeing CH-47 Chinook flying
-Boeing CH-47 Chinook landing
-Boeing CH-47 Chinook refuel Keresene
-Boat swimming
-Boat stopped
-Boat refuel
+Kamaz moving.
+Kamaz stopped.
+Kamaz empty loads.
+Kamaz refueled.
+BMW moving.
+BMW stopped.
+BMW music on.
+BMW refueled.
+Honda moving.
+Honda stopped.
+Honda music on.
+Honda refueled.
+Boat swimming.
+Boat stopped.
+Boat refueled.
+Boeing CH-47 Chinook took off.
+Boeing CH-47 Chinook flying.
+Boeing CH-47 Chinook landed.
+Boeing CH-47 Chinook refueled.
 ```
 
 6. to run tests: `docker exec -it ecomitize_php_1 phpunit`

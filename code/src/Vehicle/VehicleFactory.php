@@ -2,28 +2,43 @@
 
 namespace Vehicle;
 
-use Vehicle\Exception\VehicleNotFoundException;
-use VehicleStateMachine\Exception\VehicleStateMachineNotFoundException;
+use Vehicle\StateMachine\StateMachine;
 
-class VehicleFactory implements VehicleFactoryInterface
+class VehicleFactory
 {
-    public function createVehicle(string $type, string $name): VehicleInterface
+    public function createVehicle(string $name, array $actions, array $transitions = []): VehicleInterface
     {
-        $vehicleClass = sprintf('Vehicle\%sVehicle', ucfirst($type));
-        $vehicleStateMachineClass = sprintf('VehicleStateMachine\%sVehicleStateMachine', ucfirst($type));
+        $vehicle = new Vehicle();
 
-        if (!class_exists($vehicleClass)) {
-            throw new VehicleNotFoundException(sprintf('Vehicle of class %s not founded.', $vehicleClass));
+        $vehicle->setName($name);
+
+        foreach ($actions as $action) {
+
+            $vehicleActionClass = sprintf('Vehicle\Action\%sAction', StringUtils::underscoreToUpperCamelCase($action));
+
+            if (!class_exists($vehicleActionClass)) {
+                throw new \Exception(sprintf('Vehicle action %s not founded.', StringUtils::underscoreToUpperCamelCase($vehicleActionClass)));
+            }
+
+            $vehicleAction = new $vehicleActionClass();
+
+            $vehicle->addAction($vehicleAction);
         }
 
-        $vehicle = new $vehicleClass($name);
+        if ($transitions) {
+            $vehicleStateMachine = new StateMachine();
+            $vehicleStateMachine
+                ->setVehicle($vehicle)
+                ->setTransitions($transitions);
 
-        if (!class_exists($vehicleStateMachineClass)) {
-            throw new VehicleStateMachineNotFoundException(sprintf('Vehicle state machine of class %s not founded.', $vehicleStateMachineClass));
+            $vehicle->setStateMachine($vehicleStateMachine);
         }
-
-        $vehicleStateMachine = new $vehicleStateMachineClass($vehicle);
 
         return $vehicle;
+    }
+
+    public function createVehicleFromBluePrint(string $name, VehicleBlueprint $vehicleBlueprint): VehicleInterface
+    {
+        return $this->createVehicle($name, $vehicleBlueprint->getActions(), $vehicleBlueprint->getTransitions());
     }
 }
