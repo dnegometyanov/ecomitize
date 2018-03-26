@@ -67,3 +67,11 @@ Boeing CH-47 Chinook refueled.
 ```
 
 6. to run tests: `docker exec -it ecomitize_php_1 phpunit`
+
+
+7. There is support of transitions map as optional parameter
+ that defines allowed transitions between states ( i.e. BMW cannot refuel while moving.)
+ 
+ 
+8. Vehicle blueprints are also optional, they can be useful to save 
+commonly used vehicle configs somewhere for easy reuse.
